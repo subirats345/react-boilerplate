@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { withFirebase } from "../Firebase";
 
@@ -11,91 +11,92 @@ const SignUp = () => (
   </div>
 );
 
-const INITIAL_STATE = {
-  username: "",
-  email: "",
-  passwordOne: "",
-  passwordTwo: "",
-  error: null,
-};
+const SignUpFormBase = (props) => {
+  const INITIAL_STATE = {
+    username: "",
+    email: "",
+    passwordOne: "",
+    passwordTwo: "",
+    error: null,
+  };
 
-class SignUpFormBase extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...INITIAL_STATE };
-  }
+  const navigate = useNavigate();
 
-  onSubmit = (event) => {
+  const [dataForm, setDataForm] = React.useState(INITIAL_STATE);
+
+  const onSubmit = (event) => {
     event.preventDefault();
 
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne } = dataForm;
 
-    this.props.firebase
+    props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then((authUser) => {
-        this.setState({ ...INITIAL_STATE });
+        setDataForm({ ...INITIAL_STATE });
+        navigate(ROUTES.HOME, { replace: true });
       })
       .catch((error) => {
-        this.setState({ error });
+        setDataForm((prevState) => ({...prevState, error }));
       });
   };
 
-  onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  const onChange = (event) => {
+    setDataForm((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+  const { username, email, passwordOne, passwordTwo, error } = dataForm;
 
-    const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === "" ||
-      email === "" ||
-      username === "";
+  const isInvalid =
+    passwordOne !== passwordTwo ||
+    passwordOne === "" ||
+    email === "" ||
+    username === "";
 
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-          autoComplete="username"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-          autoComplete="email"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-          autoComplete="new-password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-          autoComplete="new-password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        name="username"
+        value={username}
+        onChange={onChange}
+        type="text"
+        placeholder="Full Name"
+        autoComplete="username"
+      />
+      <input
+        name="email"
+        value={email}
+        onChange={onChange}
+        type="text"
+        placeholder="Email Address"
+        autoComplete="email"
+      />
+      <input
+        name="passwordOne"
+        value={passwordOne}
+        onChange={onChange}
+        type="password"
+        placeholder="Password"
+        autoComplete="new-password"
+      />
+      <input
+        name="passwordTwo"
+        value={passwordTwo}
+        onChange={onChange}
+        type="password"
+        placeholder="Confirm Password"
+        autoComplete="new-password"
+      />
+      <button disabled={isInvalid} type="submit">
+        Sign Up
+      </button>
 
-        {error && <p>{error.message}</p>}
-      </form>
-    );
-  }
-}
+      {error && <p>{error.message}</p>}
+    </form>
+  );
+};
 
 const SignUpLink = () => (
   <p>
