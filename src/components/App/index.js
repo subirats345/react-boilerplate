@@ -18,15 +18,14 @@ const App = () => (
       <Navigation />
 
       <hr />
-
       <Routes>
-        <Route exact path={ROUTES.LANDING} component={Landing} />
-        <Route path={ROUTES.SIGN_UP} component={SignUp} />
-        <Route path={ROUTES.SIGN_IN} component={SignIn} />
-        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-        <Route path={ROUTES.HOME} component={Home} />
-        <Route path={ROUTES.ACCOUNT} component={Account} />
-        <Route path={ROUTES.ADMIN} component={Admin} />
+        <Route exact path={ROUTES.LANDING} element={<Landing />} />
+        <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+        <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
+        <Route path={ROUTES.PASSWORD_FORGET} element={<PasswordForget />} />
+        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.ACCOUNT} element={<Account />} />
+        <Route path={ROUTES.ADMIN} element={<Admin />} />
       </Routes>
     </div>
   </Router>
