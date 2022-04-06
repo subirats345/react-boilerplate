@@ -11,6 +11,8 @@ import Account from "../Account";
 import Admin from "../Admin";
 
 import * as ROUTES from "../../constants/routes";
+import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
+import InfoModal from "../Core/InfoModal/InfoModal";
 
 const App = () => (
   <Router>
@@ -25,6 +27,7 @@ const App = () => (
         <Route path={ROUTES.ACCOUNT} element={<Account />} />
         <Route path={ROUTES.ADMIN} element={<Admin />} />
       </Routes>
+      <InfoModal />
     </div>
   </Router>
 );
