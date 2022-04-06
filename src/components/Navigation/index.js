@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SignOutButton from "../SignOut";
 
 import * as ROUTES from "../../constants/routes";
+import ThemeToggler from "../Core/ThemeToggler/ThemeToggler";
 
 const Navigation = () => (
   // TODO: apply shadow only on scroll
@@ -39,11 +40,16 @@ const Navigation = () => (
         <MenuItems />
       </ul>
     </div>
-    <div className="navbar-end">
+    {/* NavBar End  */}
+    <div className="navbar-end gap-2">
+      <ThemeToggler />
       <div className="dropdown dropdown-end">
         <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
-            <img src="https://api.lorem.space/image/face?hash=33791" />
+            <img
+              alt="profile"
+              src="https://api.lorem.space/image/face?hash=33791"
+            />
           </div>
         </label>
         <ul
