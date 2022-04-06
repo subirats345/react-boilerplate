@@ -40,14 +40,14 @@ const Navigation = () => (
       </ul>
     </div>
     <div className="navbar-end">
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full">
+      <div className="dropdown dropdown-end">
+        <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
             <img src="https://api.lorem.space/image/face?hash=33791" />
           </div>
         </label>
         <ul
-          tabindex="0"
+          tabIndex="0"
           className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
           <li>
             <Link to={ROUTES.ACCOUNT}>Profile</Link>

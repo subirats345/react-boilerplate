@@ -13,7 +13,7 @@ const Landing = () => (
           id nisi.
         </p>
         <Link to={ROUTE.SIGN_UP} className="btn btn-primary">
-          Get Startet
+          Get Started
         </Link>
       </div>
     </div>

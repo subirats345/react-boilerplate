@@ -7,6 +7,8 @@ import InputsCard from "../Core/InputsCard";
 
 import * as ROUTES from "../../constants/routes";
 import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
+import SocialLoginButton from "../Core/SocialLoginButton/SocialLoginButton";
+import SocialLogin from "../Core/SocialLogin/SocialLogin";
 
 const INITIAL_STATE = {
   username: "",
@@ -96,12 +98,17 @@ const SignUpFormBase = (props) => {
   return (
     <InputsCard title="Sign Up">
       {/* Sign Up Form  */}
+      <SocialLogin />
+      <p className="text-center my-3">or</p>
       <form className="form-control" onSubmit={onSubmit}>
         {inputsList.map((e) => (
           <Input key={e.name} onChange={onChange} {...e} />
         ))}
-        <div class="card-actions justify-end">
-          <button disabled={isInvalid} type="submit" class="btn btn-primary">
+        <div className="card-actions justify-end">
+          <button
+            disabled={isInvalid}
+            type="submit"
+            className="btn btn-primary">
             Sign Up
           </button>
         </div>
@@ -110,16 +117,19 @@ const SignUpFormBase = (props) => {
             <ErrorAlert error={error.message} />
           </div>
         )}
+        <div className="text-center mt-2">
+          <SignInLink />
+        </div>
       </form>
     </InputsCard>
   );
 };
 
-const SignUpLink = () => (
+const SignInLink = () => (
   <p>
-    Don't have an account?{" "}
-    <Link className="link" to={ROUTES.SIGN_UP}>
-      Sign Up
+    Already have an account?{" "}
+    <Link className="link" to={ROUTES.SIGN_IN}>
+      Sign In
     </Link>
   </p>
 );
@@ -128,4 +138,4 @@ const SignUpForm = compose(withFirebase)(SignUpFormBase);
 
 export default SignUp;
 
-export { SignUpForm, SignUpLink };
+export { SignUpForm };
