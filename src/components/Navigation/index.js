@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SignOutButton from "../SignOut";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -12,6 +13,9 @@ const Navigation = () => (
           <Link to={e.link}>{e.title}</Link>
         </li>
       ))}
+      <li>
+        <SignOutButton />
+      </li>
     </ul>
   </div>
 );

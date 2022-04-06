@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { withFirebase } from "../Firebase";
 import Input from "../Core/Input";
+import { compose } from "recompose";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -53,38 +54,36 @@ const SignUpFormBase = (props) => {
   const inputsList = [
     {
       name: "username",
-      value: { username },
-      onChange: { onChange },
+      value: username,
       type: "text",
       placeholder: "Full Name",
       autoComplete: "username",
     },
     {
       name: "email",
-      value: { email },
-      onChange: { onChange },
+      value: email,
       type: "text",
       placeholder: "Email Address",
       autoComplete: "email",
     },
     {
       name: "passwordOne",
-      value: { passwordOne },
-      onChange: { onChange },
+      value: passwordOne,
       type: "password",
       placeholder: "Password",
       autoComplete: "new-password",
     },
     {
       name: "passwordTwo",
-      value: { passwordTwo },
-      onChange: { onChange },
+      value: passwordTwo,
       type: "password",
       placeholder: "Confirm Password",
       autoComplete: "new-password",
     },
   ];
 
+  // A simple validator
+  // TODO: Improve this
   const isInvalid =
     passwordOne !== passwordTwo ||
     passwordOne === "" ||
@@ -93,38 +92,9 @@ const SignUpFormBase = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input
-        name="username"
-        value={username}
-        onChange={onChange}
-        type="text"
-        placeholder="Full Name"
-        autoComplete="username"
-      />
-      <input
-        name="email"
-        value={email}
-        onChange={onChange}
-        type="text"
-        placeholder="Email Address"
-        autoComplete="email"
-      />
-      <input
-        name="passwordOne"
-        value={passwordOne}
-        onChange={onChange}
-        type="password"
-        placeholder="Password"
-        autoComplete="new-password"
-      />
-      <input
-        name="passwordTwo"
-        value={passwordTwo}
-        onChange={onChange}
-        type="password"
-        placeholder="Confirm Password"
-        autoComplete="new-password"
-      />
+      {inputsList.map((e) => (
+        <Input key={e.name} onChange={onChange} {...e} />
+      ))}
       <button disabled={isInvalid} type="submit">
         Sign Up
       </button>
@@ -140,7 +110,7 @@ const SignUpLink = () => (
   </p>
 );
 
-const SignUpForm = withFirebase(SignUpFormBase);
+const SignUpForm = compose(withFirebase)(SignUpFormBase);
 
 export default SignUp;
 
