@@ -40,7 +40,23 @@ const Navigation = () => (
       </ul>
     </div>
     <div className="navbar-end">
-      <SignOutButton />
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img src="https://api.lorem.space/image/face?hash=33791" />
+          </div>
+        </label>
+        <ul
+          tabindex="0"
+          className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+          <li>
+            <Link to={ROUTES.ACCOUNT}>Profile</Link>
+          </li>
+          <li>
+            <SignOutButton />
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 );
@@ -55,16 +71,20 @@ const MenuItems = () => {
 
 const navigationItems = [
   {
-    title: "Sign In",
-    link: ROUTES.SIGN_IN,
-  },
-  {
     title: "Landing",
     link: ROUTES.LANDING,
   },
   {
     title: "Home",
     link: ROUTES.HOME,
+  },
+  {
+    title: "Sign In",
+    link: ROUTES.SIGN_IN,
+  },
+  {
+    title: "Sign Up",
+    link: ROUTES.SIGN_UP,
   },
   {
     title: "Account",
