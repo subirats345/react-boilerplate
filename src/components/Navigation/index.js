@@ -5,6 +5,7 @@ import SignOutButton from "../SignOut";
 import * as ROUTES from "../../constants/routes";
 
 const Navigation = () => (
+  // TODO: apply shadow only on scroll
   <div className="navbar bg-base-100 shadow-md">
     <div className="navbar-start">
       <div className="dropdown">

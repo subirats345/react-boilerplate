@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { withFirebase } from "../Firebase";
 import Input from "../Core/Input";
 import { compose } from "recompose";
+import InputsCard from "../Core/InputsCard";
 
 import * as ROUTES from "../../constants/routes";
+import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
 
 const INITIAL_STATE = {
   username: "",
@@ -14,12 +16,13 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const SignUp = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
-  </div>
-);
+const SignUp = () => {
+  return (
+    <div className="flex justify-center">
+      <SignUpForm />
+    </div>
+  );
+};
 
 const SignUpFormBase = (props) => {
   const navigate = useNavigate();
@@ -91,22 +94,33 @@ const SignUpFormBase = (props) => {
     username === "";
 
   return (
-    <form onSubmit={onSubmit}>
-      {inputsList.map((e) => (
-        <Input key={e.name} onChange={onChange} {...e} />
-      ))}
-      <button disabled={isInvalid} type="submit">
-        Sign Up
-      </button>
-
-      {error && <p>{error.message}</p>}
-    </form>
+    <InputsCard title="Sign Up">
+      {/* Sign Up Form  */}
+      <form className="form-control" onSubmit={onSubmit}>
+        {inputsList.map((e) => (
+          <Input key={e.name} onChange={onChange} {...e} />
+        ))}
+        <div class="card-actions justify-end">
+          <button disabled={isInvalid} type="submit" class="btn btn-primary">
+            Sign Up
+          </button>
+        </div>
+        {error && (
+          <div className="mt-4">
+            <ErrorAlert error={error.message} />
+          </div>
+        )}
+      </form>
+    </InputsCard>
   );
 };
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    Don't have an account?{" "}
+    <Link className="link" to={ROUTES.SIGN_UP}>
+      Sign Up
+    </Link>
   </p>
 );
 

@@ -6,6 +6,8 @@ import Input from "../Core/Input";
 import { compose } from "recompose";
 
 import * as ROUTES from "../../constants/routes";
+import InputsCard from "../Core/InputsCard";
+import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
 
 const INITIAL_STATE = {
   email: "",
@@ -14,8 +16,7 @@ const INITIAL_STATE = {
 };
 
 const SignIn = () => (
-  <div>
-    <h1>SignIn</h1>
+  <div className="flex justify-center">
     <SignInForm />
   </div>
 );
@@ -68,15 +69,26 @@ const SignInFormBase = (props) => {
   ];
 
   return (
-    <form onSubmit={onSubmit}>
-      {inputsList.map((e) => (
-        <Input key={e.name} onChange={onChange} {...e} />
-      ))}
-      <button type="submit">Sign In</button>
-
-      {error && <p>{error.message}</p>}
-      <SignUpLink />
-    </form>
+    <InputsCard title="Sign In">
+      <form onSubmit={onSubmit}>
+        {inputsList.map((e) => (
+          <Input key={e.name} onChange={onChange} {...e} />
+        ))}
+        <div class="card-actions justify-end">
+          <button type="submit" class="btn btn-primary">
+            Sign In
+          </button>
+        </div>
+        {error && (
+          <div className="my-4">
+            <ErrorAlert error={error.message} />
+          </div>
+        )}
+        <div className="text-center">
+          <SignUpLink />
+        </div>
+      </form>
+    </InputsCard>
   );
 };
 
