@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 const config = {
@@ -38,7 +39,7 @@ class Firebase {
       .then(() => console.log("Sign Out Succesful"))
       .catch((error) => console.log(error));
 
-  doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
+  doPasswordReset = (email) => sendPasswordResetEmail(this.auth, email);
 
   doPasswordUpdate = (password) =>
     this.auth.currentUser.updatePassword(password);

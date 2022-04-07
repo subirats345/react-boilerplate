@@ -38,7 +38,6 @@ const SignInFormBase = (props) => {
       .doSignInWithEmailAndPassword(email, password)
       .then((authUser) => {
         setDataForm({ ...INITIAL_STATE });
-        navigate(ROUTES.HOME, { replace: true });
       })
       .catch((error) => {
         setDataForm((prevState) => ({ ...prevState, error }));
