@@ -84,8 +84,9 @@ const SignInFormBase = (props) => {
           </button>
         </div>
         {error && (
-          <div className="my-4">
+          <div className="my-4 flex flex-col gap-y-6">
             <ErrorAlert error={error.message} />
+            <PasswordForgetLink />
           </div>
         )}
         <div className="text-center mt-2">
@@ -101,6 +102,15 @@ const SignUpLink = () => (
     Don't have an account?{" "}
     <Link className="link" to={ROUTES.SIGN_UP}>
       Sign Up
+    </Link>
+  </p>
+);
+
+const PasswordForgetLink = () => (
+  <p>
+    Don't remember your password?{" "}
+    <Link className="link" to={ROUTES.PASSWORD_FORGET}>
+      Reset yout password
     </Link>
   </p>
 );

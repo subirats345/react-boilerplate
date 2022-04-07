@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   sendPasswordResetEmail,
+  updatePassword,
 } from "firebase/auth";
 
 const config = {
@@ -41,8 +42,7 @@ class Firebase {
 
   doPasswordReset = (email) => sendPasswordResetEmail(this.auth, email);
 
-  doPasswordUpdate = (password) =>
-    this.auth.currentUser.updatePassword(password);
+  doPasswordUpdate = (password) => updatePassword(this.auth, password);
 
   // *** Google Auth API ***
 
