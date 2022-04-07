@@ -17,8 +17,10 @@ const INITIAL_STATE = {
 };
 
 const SignIn = () => (
-  <div className="flex justify-center">
-    <SignInForm />
+  <div className="flex-grow">
+    <div className="flex justify-center py-10">
+      <SignInForm />
+    </div>
   </div>
 );
 

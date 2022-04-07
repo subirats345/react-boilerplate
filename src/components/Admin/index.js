@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Admin = () => (
-  <div>
+  <div className="flex-grow">
     <h1>Admin</h1>
   </div>
 );

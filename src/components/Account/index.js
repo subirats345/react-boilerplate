@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Account = () => (
-  <div>
+  <div className="flex-grow">
     <h1>Account</h1>
   </div>
 );

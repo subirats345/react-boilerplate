@@ -21,7 +21,7 @@ const INITIAL_STATE = {
 const SignUp = () => {
   return (
     <div className="flex-grow">
-      <div className="flex justify-center py-6">
+      <div className="flex justify-center py-10">
         <SignUpForm />
       </div>
     </div>
