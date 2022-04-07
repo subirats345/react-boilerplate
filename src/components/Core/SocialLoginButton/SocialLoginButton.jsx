@@ -1,8 +1,6 @@
 const SocialLoginButton = ({ color, icon, callback }) => {
   return (
-    <button
-      className={`btn flex-auto ${color}`}
-      onClick={() => console.log("hello")}>
+    <button className={`btn flex-auto ${color}`} onClick={callback}>
       {icon}
     </button>
   );

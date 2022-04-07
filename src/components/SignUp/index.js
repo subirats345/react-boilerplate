@@ -8,6 +8,7 @@ import InputsCard from "../Core/InputsCard";
 import * as ROUTES from "../../constants/routes";
 import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
 import SocialLogin from "../Core/SocialLogin/SocialLogin";
+import SocialLoginArea from "../Core/SocialLogin/SocialLogin";
 
 const INITIAL_STATE = {
   username: "",
@@ -99,7 +100,7 @@ const SignUpFormBase = (props) => {
   return (
     <InputsCard title="Sign Up">
       {/* Sign Up Form  */}
-      <SocialLogin />
+      <SocialLoginArea />
       <p className="text-center my-3">or</p>
       <form className="form-control" onSubmit={onSubmit}>
         {inputsList.map((e) => (

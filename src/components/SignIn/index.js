@@ -8,6 +8,7 @@ import * as ROUTES from "../../constants/routes";
 import InputsCard from "../Core/InputsCard";
 import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
 import SocialLogin from "../Core/SocialLogin/SocialLogin";
+import SocialLoginArea from "../Core/SocialLogin/SocialLogin";
 
 const INITIAL_STATE = {
   email: "",
@@ -70,7 +71,7 @@ const SignInFormBase = (props) => {
 
   return (
     <InputsCard title="Sign In">
-      <SocialLogin />
+      <SocialLoginArea />
       <p className="text-center my-3">or</p>
       <form onSubmit={onSubmit}>
         {inputsList.map((e) => (
