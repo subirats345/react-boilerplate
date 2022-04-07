@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as ROUTE from "../../constants/routes";
 
 const Landing = () => (
-  <div className="hero min-h-screen bg-base-200">
+  <div className="hero flex-grow bg-base-200">
     <div className="hero-content text-center">
       <div className="max-w-md">
         <h1 className="text-5xl font-bold">Hello there</h1>

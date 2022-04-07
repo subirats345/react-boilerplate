@@ -1,20 +1,16 @@
 import React from "react";
 
 // TODO: try to implement this info modal function!
+// https://www.youtube.com/watch?v=uSxj3Rnu-Nk&ab_channel=PedroTech
 
-const InfoModal = ({ show }) => {
-  const [displayModal, setDisplayModal] = React.useState(true);
-
-  const modalToggler = () => {
-    setTimeout(() => setDisplayModal(false), 2000);
-  };
+const InfoModal = () => {
+  const [displayModal, setDisplayModal] = React.useState(false);
 
   return (
     <div
       className={`fixed bottom-4 right-4 transition ease-in-out ${
         !displayModal ? "opacity-0" : "opacity-100"
-      }`}
-      onClick={modalToggler}>
+      }`}>
       <div className="alert shadow-lg">
         <div>
           <svg

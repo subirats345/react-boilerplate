@@ -7,7 +7,6 @@ import InputsCard from "../Core/InputsCard";
 
 import * as ROUTES from "../../constants/routes";
 import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
-import SocialLoginButton from "../Core/SocialLoginButton/SocialLoginButton";
 import SocialLogin from "../Core/SocialLogin/SocialLogin";
 
 const INITIAL_STATE = {
@@ -20,8 +19,10 @@ const INITIAL_STATE = {
 
 const SignUp = () => {
   return (
-    <div className="flex justify-center">
-      <SignUpForm />
+    <div className="flex-grow">
+      <div className="flex justify-center py-6">
+        <SignUpForm />
+      </div>
     </div>
   );
 };

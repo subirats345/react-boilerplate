@@ -4,6 +4,8 @@ import React from "react";
 //   - useEffect()
 //   - option to read the theme from the OS
 
+// TODO: a list with all icons
+
 const ThemeToggler = () => {
   const html = document.querySelector("html");
 

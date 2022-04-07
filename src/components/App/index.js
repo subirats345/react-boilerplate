@@ -11,12 +11,12 @@ import Account from "../Account";
 import Admin from "../Admin";
 
 import * as ROUTES from "../../constants/routes";
-import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
 import InfoModal from "../Core/InfoModal/InfoModal";
+import Footer from "../Footer/Footer";
 
 const App = () => (
   <Router>
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navigation />
       <Routes>
         <Route exact path={ROUTES.LANDING} element={<Landing />} />
@@ -28,6 +28,7 @@ const App = () => (
         <Route path={ROUTES.ADMIN} element={<Admin />} />
       </Routes>
       <InfoModal />
+      <Footer />
     </div>
   </Router>
 );
