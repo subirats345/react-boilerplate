@@ -24,6 +24,8 @@ const SignIn = () => (
   </div>
 );
 
+// TODO send users to Home if logged, also in SignUP Screen
+
 const SignInFormBase = (props) => {
   const navigate = useNavigate();
 

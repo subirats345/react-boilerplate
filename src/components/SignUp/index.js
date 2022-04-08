@@ -7,7 +7,6 @@ import InputsCard from "../Core/InputsCard";
 
 import * as ROUTES from "../../constants/routes";
 import ErrorAlert from "../Core/ErrorAlert/ErrorAlert";
-import SocialLogin from "../Core/SocialLogin/SocialLogin";
 import SocialLoginArea from "../Core/SocialLogin/SocialLogin";
 
 const INITIAL_STATE = {
@@ -40,9 +39,12 @@ const SignUpFormBase = (props) => {
 
     props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then((authUser) => {
+      .then((authUser) =>
+        props.firebase.doAddUser(authUser.user.uid, username, email)
+      )
+      .then(() => {
         setDataForm({ ...INITIAL_STATE });
-        navigate(ROUTES.HOME, { replace: true });
+        navigate(ROUTES.HOME);
       })
       .catch((error) => {
         setDataForm((prevState) => ({ ...prevState, error }));
@@ -96,6 +98,8 @@ const SignUpFormBase = (props) => {
     passwordOne === "" ||
     email === "" ||
     username === "";
+
+  // TODO create user also when register with social login
 
   return (
     <InputsCard title="Sign Up">

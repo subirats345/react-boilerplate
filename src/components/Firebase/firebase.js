@@ -10,6 +10,7 @@ import {
   sendPasswordResetEmail,
   updatePassword,
 } from "firebase/auth";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -22,9 +23,10 @@ const config = {
 
 class Firebase {
   constructor() {
-    initializeApp(config);
+    const app = initializeApp(config);
     this.auth = getAuth();
     this.googleAuth = new GoogleAuthProvider();
+    this.db = getFirestore(app);
   }
 
   // *** Auth API ***
@@ -82,6 +84,22 @@ class Firebase {
         console.log("No user");
       }
     });
+
+  // *** Firestore Section ***
+  doAddUser = async (uid, userName, email) => {
+    try {
+      const docRef = await addDoc(collection(this.db, "users"), {
+        uid: uid,
+        userName: userName,
+        email: email,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
+  users = () => this.db.ref("users");
 }
 
 export default Firebase;
