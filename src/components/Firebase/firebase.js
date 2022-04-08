@@ -10,7 +10,7 @@ import {
   sendPasswordResetEmail,
   updatePassword,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -99,7 +99,22 @@ class Firebase {
     }
   };
 
-  users = () => this.db.ref("users");
+  users = async () => {
+    const querySnapshot = await getDocs(collection(this.db, "users"));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+    });
+  };
+
+  usersTest = async () => {
+    const docsList = [];
+    const querySnapshot = await getDocs(collection(this.db, "users"));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+      docsList.push(doc.data);
+    });
+    return docsList;
+  };
 }
 
 export default Firebase;

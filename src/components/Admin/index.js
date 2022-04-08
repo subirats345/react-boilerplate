@@ -1,18 +1,13 @@
 import React from "react";
+import InfoTable from "../Core/InfoTable/InfoTable";
+import { withFirebase } from "../Firebase";
 
-const Admin = () => (
-  <div className="hero flex-grow bg-base-200">
-    <div className="hero-content text-center">
-      <div className="max-w-md">
-        <h1 className="text-5xl font-bold">Admin</h1>
-        <p className="py-6">
-          Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-          excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-          id nisi.
-        </p>
-      </div>
+const Admin = (props) => {
+  return (
+    <div className="flex-grow bg-base-200 p-16 bg-blue-100">
+      <InfoTable {...props} />
     </div>
-  </div>
-);
+  );
+};
 
-export default Admin;
+export default withFirebase(Admin);
