@@ -54,7 +54,6 @@ class Firebase {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
         // ...
       })
       .catch((error) => {
@@ -76,7 +75,6 @@ class Firebase {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
-        console.log(uid);
         // ...
       } else {
         // User is signed out

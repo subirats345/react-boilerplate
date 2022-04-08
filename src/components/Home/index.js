@@ -1,4 +1,5 @@
 import React from "react";
+import { withAuthorization } from "../Session";
 
 const Home = () => (
   <div className="hero flex-grow bg-base-200">
@@ -15,4 +16,6 @@ const Home = () => (
   </div>
 );
 
-export default Home;
+const condition = (authUser) => authUser != null;
+
+export default withAuthorization(condition)(Home);

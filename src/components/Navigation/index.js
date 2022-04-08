@@ -66,7 +66,6 @@ const Navigation = () => {
 
 const MenuItems = ({ isAuth }) => {
   const navList = isAuth ? navigationItemsAuth : navigationItemsNoAuth;
-  console.log(isAuth);
 
   return navList.map((e) => (
     <li key={e.link}>
