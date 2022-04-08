@@ -68,7 +68,7 @@ const PasswordChangeFormBase = (props) => {
   ];
 
   return (
-    <InputsCard title="Reset My pAssword">
+    <InputsCard title="Change the password">
       <form onSubmit={onSubmit}>
         {inputsList.map((e) => (
           <Input key={e.name} onChange={onChange} {...e} />
