@@ -9,8 +9,17 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
   updatePassword,
+  deleteUser,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -46,6 +55,17 @@ class Firebase {
 
   doPasswordUpdate = (password) => updatePassword(this.auth, password);
 
+  doDeleteUser = (user) =>
+    deleteUser(user)
+      .then(() => {
+        // Delete user from Firestore
+        deleteDoc(doc(this.db, "users", user.uid));
+      })
+      .catch((error) => {
+        // An error ocurred
+        console.log(error);
+      });
+
   // *** Google Auth API ***
 
   doSignInWithGoogle = () =>
@@ -77,6 +97,7 @@ class Firebase {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
+        return uid;
         // ...
       } else {
         // User is signed out
@@ -88,7 +109,7 @@ class Firebase {
   // *** Firestore Section ***
   doAddUser = async (uid, userName, email) => {
     try {
-      const docRef = await addDoc(collection(this.db, "users"), {
+      const docRef = await setDoc(doc(this.db, "users", uid), {
         uid: uid,
         userName: userName,
         email: email,
