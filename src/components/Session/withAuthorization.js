@@ -23,9 +23,3 @@ const withAuthorization = (condition) => (Component) => {
 };
 
 export default withAuthorization;
-
-// props.firebase.onAuthStateChanged((authUser) => {
-//   if (!condition(authUser)) {
-//     this.props.history.push(ROUTES.SIGN_IN);
-//   }
-// });

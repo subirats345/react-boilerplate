@@ -4,7 +4,7 @@ import { withFirebase } from "../Firebase";
 
 const Admin = (props) => {
   return (
-    <div className="flex-grow bg-base-200 p-16 bg-blue-100">
+    <div className="flex-grow bg-base-300 p-16">
       <InfoTable {...props} />
     </div>
   );

@@ -110,8 +110,7 @@ class Firebase {
     const docsList = [];
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-      docsList.push(doc.data);
+      docsList.push(doc.data());
     });
     return docsList;
   };

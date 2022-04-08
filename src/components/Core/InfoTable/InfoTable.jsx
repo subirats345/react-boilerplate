@@ -1,11 +1,26 @@
 import React from "react";
 
 const InfoTable = (props) => {
+  const [profiles, setProfiles] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
+
+  const getProfilesAsync = () => Promise.resolve(props.firebase.usersTest());
+
+  React.useEffect(() => {
+    setIsLoading(true);
+
+    getProfilesAsync()
+      .then((result) => {
+        setProfiles(result);
+        setIsLoading(false);
+      })
+      .catch(() => setIsError(true));
+  }, []);
 
   return (
     <div className="overflow-x-auto w-full">
-      <table className="table w-full table-zebra">
+      <table className="table w-full table-compact table-zebra">
         {/* <!-- head --> */}
         <thead>
           <tr>
@@ -21,13 +36,12 @@ const InfoTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {/* <!-- row 1 --> */}
           {isLoading ? (
-            <div>
-              <progress class="progress w-56"></progress>
-            </div>
-          ) : (
             <TableRow />
+          ) : (
+            profiles.map((profile) => (
+              <TableRow key={profile.email} {...profile} />
+            ))
           )}
         </tbody>
         {/* foot */}
@@ -45,7 +59,7 @@ const InfoTable = (props) => {
   );
 };
 
-const TableRow = () => {
+const TableRow = ({ userName, img, color }) => {
   return (
     <tr className="hover">
       <th>
@@ -64,7 +78,7 @@ const TableRow = () => {
             </div>
           </div>
           <div>
-            <div className="font-bold">Hart Hagerty</div>
+            <div className="font-bold">{userName}</div>
             <div className="text-sm opacity-50">United States</div>
           </div>
         </div>
@@ -76,7 +90,7 @@ const TableRow = () => {
           Desktop Support Technician
         </span>
       </td>
-      <td>Purple</td>
+      <td>{color}</td>
       <th>
         <button className="btn btn-ghost btn-xs">details</button>
       </th>
