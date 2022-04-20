@@ -14,6 +14,8 @@ import Admin from "../Admin";
 import * as ROUTES from "../../constants/routes";
 import InfoModal from "../Core/InfoModal/InfoModal";
 import Footer from "../Footer/Footer";
+import ProfileSection from "../Account/Profile";
+import AccountConfigSection from "../Account/AccountConfigSection";
 
 const App = () => {
   return (
@@ -26,7 +28,10 @@ const App = () => {
           <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
           <Route path={ROUTES.PASSWORD_FORGET} element={<PasswordForget />} />
           <Route path={ROUTES.HOME} element={<Home />} />
-          <Route path={ROUTES.ACCOUNT} element={<Account />} />
+          <Route path={ROUTES.ACCOUNT} element={<Account />}>
+            <Route path="profile" element={<ProfileSection />} />
+            <Route path="account-config" element={<AccountConfigSection />} />
+          </Route>
           <Route path={ROUTES.ADMIN} element={<Admin />} />
         </Routes>
         <InfoModal />
