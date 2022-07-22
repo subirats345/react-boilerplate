@@ -19,7 +19,7 @@ const withAuthorization = (condition) => (Component) => {
     return <Component {...props} />;
   };
 
-  return compose(withFirebase)(WithAuthorization);
+  return compose(withAuthentication)(WithAuthorization);
 };
 
 export default withAuthorization;

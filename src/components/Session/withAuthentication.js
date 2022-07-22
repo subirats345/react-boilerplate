@@ -4,7 +4,9 @@ import { AuthUserContext } from "../Session/index";
 import { withFirebase } from "../Firebase";
 
 // TODO use the authContext Consumer instead
+// HOC
 const withAuthentication = (Component) => {
+  // Function component
   const WithAuthentication = (props) => {
     const [authUser, setAuthUser] = React.useState(null);
 
